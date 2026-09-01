@@ -7,8 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -36,10 +35,8 @@
             overflow-x: hidden;
         }
 
-        /* Override Bootstrap link styles so they don't turn blue */
         a { text-decoration: none; color: inherit; }
 
-        /* ── ANIMATED BACKGROUND PARTICLES ── */
         body::before {
             content: '';
             position: fixed;
@@ -57,7 +54,7 @@
         .top-bar {
             background: linear-gradient(90deg, var(--crimson), #5A0A0A, var(--crimson));
             text-align: center;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-family: 'Rajdhani', sans-serif;
             font-weight: 600;
             font-size: 14px;
@@ -150,10 +147,7 @@
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
-        .divider-ornament .gem {
-            color: var(--gold);
-            font-size: 18px;
-        }
+        .divider-ornament .gem { color: var(--gold); font-size: 18px; }
 
         .hero-verse {
             font-style: italic;
@@ -184,6 +178,21 @@
             animation: fadeUp 0.8s ease forwards 1.1s;
         }
 
+        .fire-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #8B1A1A, #C0392B);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 6px 20px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(192,57,43,0.3);
+        }
+
         .btn-primary {
             display: inline-block;
             background: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C);
@@ -212,6 +221,27 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white !important;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 18px 40px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(37,211,102,0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(37,211,102,0.5);
+            background: #20BD5A;
         }
 
         .security-note {
@@ -253,10 +283,7 @@
             line-height: 1.2;
         }
 
-        .section-title em {
-            color: var(--gold);
-            font-style: normal;
-        }
+        .section-title em { color: var(--gold); font-style: normal; }
 
         .pain-grid {
             display: grid;
@@ -308,6 +335,13 @@
             font-style: italic;
             color: var(--gold-light);
             border-radius: 2px;
+        }
+
+        .gold-line {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px auto;
         }
 
         /* ── BOOKS SECTION ── */
@@ -405,6 +439,132 @@
             border-radius: 2px;
         }
 
+        /* ── GALLERY SECTION ── */
+        .gallery-section {
+            padding: 100px 20px;
+            background: var(--deep-black);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 3/4;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(201,168,76,0.3);
+            z-index: 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            padding: 20px 12px 12px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay { transform: translateY(0); }
+
+        .gallery-item .overlay h4 {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.97);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .lightbox-close:hover { color: var(--gold); }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .lightbox-nav:hover { color: var(--gold); }
+        .lightbox-nav.prev { left: 10px; }
+        .lightbox-nav.next { right: 10px; }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(201,168,76,0.15);
+            border: 1px solid var(--gold-dark);
+            color: var(--gold);
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
         /* ── VALUE STACK ── */
         .value-section {
             padding: 100px 20px;
@@ -430,9 +590,7 @@
         }
 
         .value-row:hover { background: rgba(201,168,76,0.03); }
-
         .value-row:last-child { border-bottom: none; }
-
         .value-row .label { color: var(--text-muted); }
         .value-row .price { font-family: 'Rajdhani', sans-serif; font-weight: 600; color: var(--text-primary); }
 
@@ -481,9 +639,10 @@
             font-size: 14px;
             font-weight: 700;
             letter-spacing: 1px;
-            padding: 6px 18px;
+            padding: 8px 24px;
             border-radius: 2px;
             margin-top: 20px;
+            box-shadow: 0 0 20px rgba(139,26,26,0.4);
         }
 
         /* ── WHO IS THIS FOR ── */
@@ -495,9 +654,9 @@
 
         .for-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 50px auto 0;
         }
 
@@ -530,12 +689,11 @@
         }
 
         .author-badge {
-            display: inline-block;
             width: 100px;
             height: 100px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            margin-bottom: 30px;
+            margin: 0 auto 30px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -543,7 +701,6 @@
             font-size: 32px;
             font-weight: 900;
             color: #0D0A00;
-            margin: 0 auto 30px;
             box-shadow: 0 0 40px rgba(201,168,76,0.3);
         }
 
@@ -592,6 +749,37 @@
             color: var(--text-muted);
         }
 
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .countdown-item {
+            background: rgba(139,26,26,0.2);
+            border: 1px solid rgba(139,26,26,0.5);
+            padding: 15px 20px;
+            border-radius: 4px;
+            min-width: 80px;
+        }
+
+        .countdown-item .number {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--gold);
+            display: block;
+        }
+
+        .countdown-item .label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
         /* ── GUARANTEE SECTION ── */
         .guarantee-section {
             padding: 80px 20px;
@@ -629,6 +817,48 @@
 
         .guarantee-box p { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
 
+        /* ── TESTIMONIALS ── */
+        .testimonials-section {
+            background: var(--charcoal);
+            padding: 100px 20px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 50px auto 0;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 28px;
+            border-radius: 4px;
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold);
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .testimonial-card p {
+            font-size: 15px;
+            color: var(--text-primary);
+            font-style: italic;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .testimonial-card .author {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 13px;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
         /* ── FAQ SECTION ── */
         .faq-section {
             background: var(--charcoal);
@@ -651,9 +881,28 @@
             color: var(--gold-light);
             margin-bottom: 12px;
             cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .faq-a { font-size: 16px; color: var(--text-muted); line-height: 1.7; }
+        .faq-q i {
+            transition: transform 0.3s;
+            font-size: 14px;
+        }
+
+        .faq-item.active .faq-q i { transform: rotate(180deg); }
+
+        .faq-a {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-a { max-height: 200px; }
 
         /* ── FINAL CTA ── */
         .final-cta {
@@ -679,9 +928,7 @@
             color: var(--text-muted);
         }
 
-        .price-display {
-            margin: 30px 0;
-        }
+        .price-display { margin: 30px 0; }
 
         .price-display .was {
             font-family: 'Rajdhani', sans-serif;
@@ -694,7 +941,7 @@
 
         .price-display .now {
             font-family: 'Cinzel', serif;
-            font-size: 60px;
+            font-size: clamp(40px, 8vw, 64px);
             font-weight: 900;
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             -webkit-background-clip: text;
@@ -717,6 +964,40 @@
             color: var(--text-muted);
             margin-top: 10px;
             text-transform: uppercase;
+        }
+
+        .dual-pricing {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .price-option {
+            text-align: center;
+        }
+
+        .price-option .currency-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .price-option .amount {
+            font-family: 'Cinzel', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--gold);
+        }
+
+        .price-option .was-price {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: line-through;
         }
 
         /* ── FOOTER ── */
@@ -789,14 +1070,6 @@
 
         .btn-small:hover { transform: scale(1.03); }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 600px) {
-            .sticky-bar .sticky-text { display: none; }
-            .value-row { padding: 14px 16px; }
-            .guarantee-box { padding: 40px 24px; }
-            .books-grid { grid-template-columns: 1fr; }
-        }
-
         /* ── SCROLL REVEAL ── */
         .reveal {
             opacity: 0;
@@ -809,52 +1082,29 @@
             transform: translateY(0);
         }
 
-        /* ── FIRE BADGE ── */
-        .fire-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #8B1A1A, #C0392B);
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            padding: 6px 20px;
-            border-radius: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(192,57,43,0.3);
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .sticky-bar .sticky-text { display: none; }
+            .value-row { padding: 14px 16px; font-size: 14px; }
+            .guarantee-box { padding: 40px 24px; }
+            .books-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+            .countdown-timer { gap: 10px; }
+            .countdown-item { min-width: 60px; padding: 10px; }
+            .countdown-item .number { font-size: 24px; }
+            .dual-pricing { gap: 20px; }
+            .price-option .amount { font-size: 36px; }
         }
-
-        .gold-line {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 20px auto;
-        }
-
-        /* ── CUSTOM MODAL STYLING TO MATCH THEME ── */
-        .modal-content {
-            background: var(--card-bg);
-            border: 1px solid var(--gold);
-            color: var(--text-primary);
-        }
-        .modal-header { border-bottom: 1px solid var(--card-border); }
-        .modal-footer { border-top: 1px solid var(--card-border); }
-        .nav-tabs .nav-link { color: var(--text-muted); }
-        .nav-tabs .nav-link.active { 
-            background-color: var(--gold) !important; 
-            color: #000 !important; 
-            border-color: var(--gold);
-        }
-        .btn-close { filter: invert(1); }
     </style>
 </head>
 <body>
 
+<!-- ANNOUNCEMENT BAR -->
 <div class="top-bar">
-    ⚡ <span>LIMITED TIME OFFER</span> All 10 Bestselling eBooks for just ₦15,000 / $15 <span>•</span> This Price Expires Soon <span>⚡</span>
+    ⚡ <span>NEW MONTH SPECIAL</span> All 10 Prophetic eBooks for ₦5,000 / $5 Only <span>•</span> Expires 2nd September <span>⚡</span>
 </div>
 
+<!-- HERO SECTION -->
 <section class="hero section">
     <div class="hero-eyebrow">Prophet Elijah G. Amusa Presents</div>
     <h1 class="hero-title">The Complete Prophetic Knowledge Collection</h1>
@@ -872,12 +1122,13 @@
     </blockquote>
 
     <div class="hero-cta-group">
-        <div class="fire-badge">🔥 Limited Edition Bundle</div>
-        <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">YES — I Want All 10 Books for ₦15,000 / $15 </button>
-        <p class="security-note">🔒 Secure Checkout &nbsp;|&nbsp; <span>Instant Digital Delivery</span> &nbsp;|&nbsp; All 10 eBooks Included</p>
+        <div class="fire-badge">🔥 Limited New Month Offer</div>
+        <a href="https://wa.me/2349114612435?text=Hello%2C%20I%20want%20to%20purchase%20The%20Complete%20Prophetic%20Knowledge%20Collection%20for%20%E2%82%A65%2C000" class="btn-primary">YES — I Want All 10 Books for ₦5,000 / $5</a>
+        <p class="security-note">🔒 Secure Payment &nbsp;|&nbsp; <span>Instant Digital Delivery</span> &nbsp;|&nbsp; All 10 eBooks Included</p>
     </div>
 </section>
 
+<!-- PAIN SECTION -->
 <section class="pain-section section">
     <div class="section-label">The Problem</div>
     <h2 class="section-title reveal">Are You Stuck at the Same <em>Level</em>?</h2>
@@ -908,6 +1159,7 @@
     </div>
 </section>
 
+<!-- SOLUTION SECTION -->
 <section class="solution-section section">
     <div class="section-label reveal">The Solution</div>
     <h2 class="section-title reveal">The Difference Between Prophets Who <em>Move Crowds</em> and Those Who Move Chairs</h2>
@@ -921,8 +1173,13 @@
     <p class="reveal">
         Prophet Elijah G. Amusa has spent years in the fire of the prophetic office — studying, practising, ascending — and has distilled everything into <strong>10 comprehensive volumes</strong> that cover every dimension of prophetic ministry you need to master.
     </p>
+    <a href="https://wa.me/2349114612435?text=Hello%2C%20I%20want%20to%20purchase%20The%20Complete%20Prophetic%20Knowledge%20Collection%20for%20%E2%82%A65%2C000" class="btn-whatsapp reveal" style="margin-top:30px">
+        <i class="fab fa-whatsapp" style="font-size:20px"></i>
+        Get Instant Access on WhatsApp
+    </a>
 </section>
 
+<!-- BOOKS SECTION -->
 <section class="books-section section">
     <div class="inner">
         <div class="books-header">
@@ -931,7 +1188,6 @@
             <div class="gold-line reveal"></div>
         </div>
         <div class="books-grid">
-
             <div class="book-card reveal">
                 <div class="book-number">01</div>
                 <div class="book-info">
@@ -940,7 +1196,6 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">02</div>
                 <div class="book-info">
@@ -949,7 +1204,6 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">03</div>
                 <div class="book-info">
@@ -958,7 +1212,6 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">04</div>
                 <div class="book-info">
@@ -967,7 +1220,6 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">05</div>
                 <div class="book-info">
@@ -976,7 +1228,6 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">06</div>
                 <div class="book-info">
@@ -985,7 +1236,6 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">07</div>
                 <div class="book-info">
@@ -994,16 +1244,14 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">08</div>
                 <div class="book-info">
-                    <h3>Telepathic Communication with Angels in the Prophetic</h3>
+                    <h3>Telepathic Communication with Angels</h3>
                     <p>Discover how prophets hear, sense, and receive transmissions from the angelic realm with clarity, accuracy, and discernment.</p>
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">09</div>
                 <div class="book-info">
@@ -1012,7 +1260,6 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
             <div class="book-card reveal">
                 <div class="book-number">10</div>
                 <div class="book-info">
@@ -1021,11 +1268,151 @@
                     <span class="book-value">VALUE: ₦3,000</span>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
 
+<!-- GALLERY SECTION -->
+<section class="gallery-section section">
+    <div style="text-align:center">
+        <div class="section-label reveal">Preview Pages</div>
+        <h2 class="section-title reveal">See What's <em>Inside</em></h2>
+        <div class="gold-line reveal"></div>
+        <p class="reveal" style="color:var(--text-muted);max-width:500px;margin:0 auto">27 pages from across all 10 eBooks — click any image to view full size</p>
+    </div>
+
+    <div class="gallery-grid">
+        <!-- Breaking Foundational Powers -->
+        <div class="gallery-item reveal" onclick="openLightbox(0)">
+            <img src="breaking 0.PNG" alt="Breaking Foundational Powers">
+            <div class="overlay"><h4>Breaking Powers (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(1)">
+            <img src="breaking 1.PNG" alt="Breaking Foundational Powers">
+            <div class="overlay"><h4>Breaking Powers (2)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(2)">
+            <img src="breaking 2.PNG" alt="Breaking Foundational Powers">
+            <div class="overlay"><h4>Breaking Powers (3)</h4></div>
+        </div>
+        <!-- Holy Madness -->
+        <div class="gallery-item reveal" onclick="openLightbox(3)">
+            <img src="holy m.PNG" alt="Holy Madness">
+            <div class="overlay"><h4>Holy Madness (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(4)">
+            <img src="holy m 1.PNG" alt="Holy Madness">
+            <div class="overlay"><h4>Holy Madness (2)</h4></div>
+        </div>
+        <!-- Visualization -->
+        <div class="gallery-item reveal" onclick="openLightbox(5)">
+            <img src="visua.PNG" alt="Visualization">
+            <div class="overlay"><h4>Visualization (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(6)">
+            <img src="visua 1.PNG" alt="Visualization">
+            <div class="overlay"><h4>Visualization (2)</h4></div>
+        </div>
+        <!-- Pulling Crowds -->
+        <div class="gallery-item reveal" onclick="openLightbox(7)">
+            <img src="pulling.PNG" alt="Pulling Crowds">
+            <div class="overlay"><h4>Pulling Crowds (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(8)">
+            <img src="pulling 1.PNG" alt="Pulling Crowds">
+            <div class="overlay"><h4>Pulling Crowds (2)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(9)">
+            <img src="pulling 2.PNG" alt="Pulling Crowds">
+            <div class="overlay"><h4>Pulling Crowds (3)</h4></div>
+        </div>
+        <!-- Angelic Operations -->
+        <div class="gallery-item reveal" onclick="openLightbox(10)">
+            <img src="summon.PNG" alt="Angelic Operations">
+            <div class="overlay"><h4>Angelic Operations (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(11)">
+            <img src="summon 1.PNG" alt="Angelic Operations">
+            <div class="overlay"><h4>Angelic Operations (2)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(12)">
+            <img src="summon 2.PNG" alt="Angelic Operations">
+            <div class="overlay"><h4>Angelic Operations (3)</h4></div>
+        </div>
+        <!-- Tongues -->
+        <div class="gallery-item reveal" onclick="openLightbox(13)">
+            <img src="tongue.PNG" alt="Tongues">
+            <div class="overlay"><h4>Tongues (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(14)">
+            <img src="tongues.PNG" alt="Tongues">
+            <div class="overlay"><h4>Tongues (2)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(15)">
+            <img src="tongues 1.PNG" alt="Tongues">
+            <div class="overlay"><h4>Tongues (3)</h4></div>
+        </div>
+        <!-- Creating Revivals -->
+        <div class="gallery-item reveal" onclick="openLightbox(16)">
+            <img src="creating.PNG" alt="Creating Revivals">
+            <div class="overlay"><h4>Creating Atmosphere (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(17)">
+            <img src="creating 1.PNG" alt="Creating Revivals">
+            <div class="overlay"><h4>Creating Atmosphere (2)</h4></div>
+        </div>
+        <!-- How To -->
+        <div class="gallery-item reveal" onclick="openLightbox(18)">
+            <img src="how to.PNG" alt="How To">
+            <div class="overlay"><h4>Training Series (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(19)">
+            <img src="how to 1.PNG" alt="How To">
+            <div class="overlay"><h4>Training Series (2)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(20)">
+            <img src="how to 2.PNG" alt="How To">
+            <div class="overlay"><h4>Training Series (3)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(21)">
+            <img src="how to 3.PNG" alt="How To">
+            <div class="overlay"><h4>Training Series (4)</h4></div>
+        </div>
+        <!-- PhD -->
+        <div class="gallery-item reveal" onclick="openLightbox(22)">
+            <img src="phd.PNG" alt="PhD">
+            <div class="overlay"><h4>PhD in Prophetic (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(23)">
+            <img src="phd 1.PNG" alt="PhD">
+            <div class="overlay"><h4>PhD in Prophetic (2)</h4></div>
+        </div>
+        <!-- Telepathic -->
+        <div class="gallery-item reveal" onclick="openLightbox(24)">
+            <img src="telephatic.PNG" alt="Telepathic">
+            <div class="overlay"><h4>Telepathic Operations (1)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(25)">
+            <img src="telephatic 1.PNG" alt="Telepathic">
+            <div class="overlay"><h4>Telepathic Operations (2)</h4></div>
+        </div>
+        <div class="gallery-item reveal" onclick="openLightbox(26)">
+            <img src="telephatic 2.PNG" alt="Telepathic">
+            <div class="overlay"><h4>Telepathic Operations (3)</h4></div>
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <span class="lightbox-nav prev" onclick="navigateLightbox(-1)">&#8249;</span>
+    <img id="lightbox-img" src="" alt="Preview">
+    <span class="lightbox-nav next" onclick="navigateLightbox(1)">&#8250;</span>
+    <div class="lightbox-counter" id="lightbox-counter">1 / 27</div>
+</div>
+
+<!-- VALUE SECTION -->
 <section class="value-section section">
     <div class="section-label reveal">Total Value Breakdown</div>
     <h2 class="section-title reveal">What This Collection Is <em>Really Worth</em></h2>
@@ -1036,16 +1423,17 @@
         <div class="value-row"><span class="label">How to Summon Angels</span><span class="price">₦3,000</span></div>
         <div class="value-row"><span class="label">Pulling Crowds</span><span class="price">₦3,000</span></div>
         <div class="value-row"><span class="label">How to Host & Pioneer Revivals</span><span class="price">₦3,000</span></div>
-        <div class="value-row"><span class="label">Tongues & Interpretations in the Prophetic</span><span class="price">₦3,000</span></div>
+        <div class="value-row"><span class="label">Tongues & Interpretations</span><span class="price">₦3,000</span></div>
         <div class="value-row"><span class="label">Telepathic Communication with Angels</span><span class="price">₦3,000</span></div>
         <div class="value-row"><span class="label">PHD — Prophetic Healing & Deliverance</span><span class="price">₦3,000</span></div>
-        <div class="value-row"><span class="label">Creating Prophetic Atmosphere & Environment</span><span class="price">₦3,000</span></div>
+        <div class="value-row"><span class="label">Creating Prophetic Atmosphere</span><span class="price">₦3,000</span></div>
         <div class="value-row total"><span class="label">TOTAL REAL VALUE</span><span class="price">₦30,000</span></div>
-        <div class="value-row offer"><span class="label">🔥 YOUR PRICE TODAY</span><span class="price">₦15,000 / $15 </span></div>
+        <div class="value-row offer"><span class="label">🔥 YOUR PRICE TODAY</span><span class="price">₦5,000 / $5</span></div>
     </div>
-    <div class="savings-badge reveal">💰 YOU SAVE ₦21,000 / $210 — OVER 71% OFF</div>
+    <div class="savings-badge reveal">💰 YOU SAVE ₦25,000 — OVER 83% OFF</div>
 </section>
 
+<!-- WHO IS THIS FOR -->
 <section class="for-section section">
     <div class="section-label reveal">Is This For You?</div>
     <h2 class="section-title reveal">This Collection Is For <em>Kingdom Carriers</em> Who Are Ready</h2>
@@ -1059,6 +1447,7 @@
     </div>
 </section>
 
+<!-- AUTHOR SECTION -->
 <section class="author-section section">
     <div class="section-label reveal">About The Author</div>
     <div class="author-badge reveal">EA</div>
@@ -1070,75 +1459,137 @@
     </p>
 </section>
 
+<!-- URGENCY SECTION -->
 <section class="urgency-section section">
     <div class="urgency-title reveal">⚠️ This Window Is Closing</div>
     <p class="urgency-text reveal">
-        This bundle price of ₦15,000 / $15 a limited-time Kingdom investment window. Once this offer expires, each book returns to its individual retail price. You would pay more than 3× this amount to own all 10 separately.
+        This bundle price of ₦5,000 / $5 is a limited-time Kingdom investment window. Once this offer expires on September 2nd, each book returns to its individual retail price. You would pay more than 6× this amount to own all 10 separately.
     </p>
-    <p class="reveal" style="font-family:'Cinzel',serif;font-size:18px;color:var(--gold-light);font-style:italic;">
-        "This is not a marketing trick. This is a window — and windows close."
-    </p>
+    <div class="countdown-timer reveal">
+        <div class="countdown-item">
+            <span class="number" id="days">00</span>
+            <span class="label">Days</span>
+        </div>
+        <div class="countdown-item">
+            <span class="number" id="hours">00</span>
+            <span class="label">Hours</span>
+        </div>
+        <div class="countdown-item">
+            <span class="number" id="minutes">00</span>
+            <span class="label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+            <span class="number" id="seconds">00</span>
+            <span class="label">Seconds</span>
+        </div>
+    </div>
+    <a href="https://wa.me/2349114612435?text=Hello%2C%20I%20want%20to%20purchase%20The%20Complete%20Prophetic%20Knowledge%20Collection%20for%20%E2%82%A65%2C000" class="btn-primary reveal" style="margin-top:20px">
+        🔥 Claim This Offer Before It Expires
+    </a>
 </section>
 
+<!-- GUARANTEE SECTION -->
 <section class="guarantee-section section">
     <div class="guarantee-box reveal">
         <h3>Our Kingdom Confidence Guarantee</h3>
         <div class="gold-line"></div>
         <p>
-            These books carry years of prophetic revelation, practical wisdom, and Kingdom intelligence. We are confident they will transform how you operate in the Spirit. Access all 10 eBooks instantly after your order is confirmed. If you have any issues with your download or delivery, our team will resolve it immediately. No delays. No excuses.
+            These books carry years of prophetic revelation, practical wisdom, and Kingdom intelligence. We are confident they will transform how you operate in the Spirit. Access all 10 eBooks instantly after your order is confirmed via WhatsApp. If you have any issues with your download or delivery, our team will resolve it immediately. No delays. No excuses.
         </p>
     </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials-section section">
+    <div style="text-align:center">
+        <div class="section-label reveal">What Readers Say</div>
+        <h2 class="section-title reveal">Transformed <em>Lives</em></h2>
+        <div class="gold-line reveal"></div>
+    </div>
+    <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>"After reading Holy Madness, my prayer life completely changed. The fire I've been looking for was in these pages all along."</p>
+            <div class="author">— Minister from Lagos</div>
+        </div>
+        <div class="testimonial-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>"The book on Breaking Foundational Powers helped me identify patterns that have held my family for generations. Breakthrough came immediately."</p>
+            <div class="author">— Pastor from Abuja</div>
+        </div>
+        <div class="testimonial-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>"I now understand angelic operations in a way nobody ever taught me. My prophetic accuracy has increased dramatically."</p>
+            <div class="author">— Prophet from Port Harcourt</div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ SECTION -->
 <section class="faq-section section">
     <div class="inner">
         <div class="section-label reveal" style="text-align:center">Common Questions</div>
         <h2 class="section-title reveal" style="text-align:center;margin-bottom:50px">Frequently Asked <em>Questions</em></h2>
 
         <div class="faq-item reveal">
-            <p class="faq-q">📖 Are these physical books or digital?</p>
-            <p class="faq-a">All 10 are digital eBooks (PDF format) delivered instantly to your email after payment. You can read them on any phone, tablet, or computer — no shipping, no waiting.</p>
+            <p class="faq-q" onclick="toggleFaq(this.parentElement)">📖 Are these physical books or digital? <i class="fas fa-chevron-down"></i></p>
+            <p class="faq-a">All 10 are digital eBooks (PDF format) delivered instantly to your WhatsApp after payment confirmation. You can read them on any phone, tablet, or computer — no shipping, no waiting.</p>
         </div>
-
         <div class="faq-item reveal">
-            <p class="faq-q">⚡ How quickly will I receive my books?</p>
-            <p class="faq-a">Immediately upon payment confirmation. A download link will be sent directly to your email address within minutes of your purchase.</p>
+            <p class="faq-q" onclick="toggleFaq(this.parentElement)">⚡ How quickly will I receive my books? <i class="fas fa-chevron-down"></i></p>
+            <p class="faq-a">Immediately upon payment confirmation. Send your proof of payment via WhatsApp and receive your download links within minutes.</p>
         </div>
-
         <div class="faq-item reveal">
-            <p class="faq-q">💳 What payment methods are accepted?</p>
-            <p class="faq-a">We accept all major debit/credit cards and bank transfers. The checkout process is fully secured and encrypted.</p>
+            <p class="faq-q" onclick="toggleFaq(this.parentElement)">💳 What payment methods are accepted? <i class="fas fa-chevron-down"></i></p>
+            <p class="faq-a">We accept bank transfers (Naira), and international wire transfers (USD). For international buyers, we also accept PayPal upon request via WhatsApp.</p>
         </div>
-
         <div class="faq-item reveal">
-            <p class="faq-q">🌍 Can I purchase from outside Nigeria?</p>
-            <p class="faq-a">Yes. Anyone anywhere in the world can purchase this collection. The pricing displayed is in Nigerian Naira, but international cards are accepted.</p>
+            <p class="faq-q" onclick="toggleFaq(this.parentElement)">🌍 Can I purchase from outside Nigeria? <i class="fas fa-chevron-down"></i></p>
+            <p class="faq-a">Yes! The price is just $5 for international buyers. You can pay via international bank transfer, or message us on WhatsApp for alternative payment options.</p>
         </div>
-
         <div class="faq-item reveal">
-            <p class="faq-q">📱 Can I read these on my phone?</p>
+            <p class="faq-q" onclick="toggleFaq(this.parentElement)">📱 Can I read these on my phone? <i class="fas fa-chevron-down"></i></p>
             <p class="faq-a">Absolutely. All 10 eBooks are in PDF format, fully readable on any smartphone, tablet, laptop, or Kindle device.</p>
+        </div>
+        <div class="faq-item reveal">
+            <p class="faq-q" onclick="toggleFaq(this.parentElement)">💰 Why is the price so low? <i class="fas fa-chevron-down"></i></p>
+            <p class="faq-a">This is a New Month special offer to make prophetic knowledge accessible to as many believers as possible. The normal price is ₦12,000 — take advantage of this window before it closes.</p>
         </div>
     </div>
 </section>
 
+<!-- FINAL CTA -->
 <section class="final-cta section" id="order">
     <div class="section-label reveal">Your Decision Moment</div>
     <h2 class="section-title reveal">The Prophets Who Will Shape the <em>Next Decade</em> Are Investing Now</h2>
     <p class="reveal">This is not just 10 books. This is a prophetic upgrade. Every page carries revelation that took years to receive — and it is available to you today for one decisive investment.</p>
 
-    <div class="price-display reveal">
-        <span class="was">Regular Price: ₦35,000</span>
-        <span class="now"><span class="currency">₦</span>9,999</span>
-        <p class="price-note">One-Time Payment · All 10 eBooks · Instant Access</p>
+    <div class="dual-pricing reveal">
+        <div class="price-option">
+            <div class="currency-label">Nigerian Buyers</div>
+            <div class="was-price">₦12,000</div>
+            <div class="amount">₦5,000</div>
+        </div>
+        <div class="price-option">
+            <div class="currency-label">International Buyers</div>
+            <div class="was-price">$12</div>
+            <div class="amount">$5</div>
+        </div>
     </div>
+    <p class="price-note reveal">One-Time Payment · All 10 eBooks · Instant Access</p>
 
     <div style="margin-top:40px" class="reveal">
-        <button class="btn-primary" style="font-size:20px;padding:24px 60px" data-bs-toggle="modal" data-bs-target="#paymentModal">
-            🛒 YES — I Want All 10 Books for ₦9,999
-        </button>
+        <a href="https://wa.me/2349114612435?text=Hello%2C%20I%20want%20to%20purchase%20The%20Complete%20Prophetic%20Knowledge%20Collection%20for%20%E2%82%A65%2C000" class="btn-primary" style="font-size:20px;padding:24px 60px">
+            🛒 YES — I Want All 10 Books Now
+        </a>
+        <div style="margin-top:20px">
+            <a href="https://wa.me/2349114612435?text=Hello%2C%20I%20want%20to%20purchase%20The%20Complete%20Prophetic%20Knowledge%20Collection%20for%20%245" class="btn-whatsapp" style="font-size:16px;padding:16px 36px">
+                <i class="fab fa-whatsapp" style="font-size:18px"></i>
+                Message on WhatsApp: 09114612435
+            </a>
+        </div>
         <p style="margin-top:20px;font-family:'Rajdhani',sans-serif;font-size:13px;letter-spacing:1px;color:var(--text-muted)">
-            🔒 SECURE CHECKOUT &nbsp;·&nbsp; INSTANT DELIVERY &nbsp;·&nbsp; LIMITED TIME PRICE
+            🔒 SECURE PAYMENT &nbsp;·&nbsp; INSTANT DELIVERY &nbsp;·&nbsp; LIMITED TIME PRICE
         </p>
     </div>
 
@@ -1150,97 +1601,122 @@
     </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-    <p>© 2025 Prophet Elijah G. Amusa · All Rights Reserved</p>
-    <p><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a> &nbsp;|&nbsp; <a href="#">Contact Support</a></p>
+    <p>© 2026 Prophet Elijah G. Amusa · All Rights Reserved</p>
+    <p><a href="https://wa.me/2349114612435">Contact Support</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
     <p style="margin-top:16px;font-size:11px;line-height:1.6;">This is a digital product. All purchases are final. For download issues, contact our support team within 48 hours of purchase.</p>
 </footer>
 
+<!-- STICKY BAR -->
 <div class="sticky-bar" id="stickyBar">
-    <span class="sticky-text">🔥 The Complete Prophetic Knowledge Collection — All 10 eBooks</span>
-    <span class="sticky-price">₦15,000 / $15 </span>
-    <button class="btn-small" data-bs-toggle="modal" data-bs-target="#paymentModal">GET INSTANT ACCESS</button>
+    <span class="sticky-text">🔥 Complete Prophetic Knowledge Collection — All 10 eBooks</span>
+    <span class="sticky-price">₦5,000 / $5</span>
+    <a href="https://wa.me/2349114612435?text=Hello%2C%20I%20want%20to%20purchase%20The%20Complete%20Prophetic%20Knowledge%20Collection%20for%20%E2%82%A65%2C000" class="btn-small">GET INSTANT ACCESS</a>
 </div>
-
-<div class="modal fade" id="paymentModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title" style="font-family: 'Cinzel', serif;">Complete Your Payment</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <ul class="nav nav-tabs" id="paymentTabs">
-          <li class="nav-item">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#naira">Naira (₦)</button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#usd">USD ($)</button>
-          </li>
-        </ul>
-
-        <div class="tab-content mt-3">
-          <div class="tab-pane fade show active" id="naira">
-            <p><strong>Account Number:</strong> 614 213 4208</p>
-            <p><strong>Bank:</strong> OPay</p>
-            <p><strong>Account Name:</strong> Godpower Elijah Amusa</p>
-          </div>
-          <div class="tab-pane fade" id="usd">
-            <p><strong>Account Name:</strong> Godpower Elijah Amusa</p>
-            <p><strong>Bank Name:</strong> Wells Fargo</p>
-            <p><strong>Account Number:</strong> 40630293732499102</p>
-            <p><strong>Account Type:</strong> Checking</p>
-            <p><strong>Routing Number:</strong> 121000248</p>
-            <p><strong>SWIFT Code:</strong> WFBIUS6S</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-footer d-flex justify-content-between">
-        <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#helpModal">
-          I couldn't pay
-        </button>
-        <button class="btn btn-success" onclick="paidNow()" style="background-color: #28a745; border:none; font-weight:bold;">
-          I HAVE PAID
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="helpModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content text-center p-3">
-      <h5 style="color:var(--gold)">Payment Issue</h5>
-      <p>Please retry payment or contact support via WhatsApp.</p>
-      <div class="d-flex justify-content-center gap-2">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Retry</button>
-        <button class="btn btn-primary" onclick="needHelp()" style="background:var(--crimson); border:none;">Contact Support</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // Payment Logic
-    function paidNow() {
-      let msg = encodeURIComponent("I have made payments for the 10 e-books. Verify and send to me.");
-      window.location.href = "https://wa.me/2348139230672?text=" + msg;
+    // Gallery Images Configuration
+    const galleryImages = [
+        { src: 'breaking 0.PNG', title: 'Breaking Foundational Powers (1)' },
+        { src: 'breaking 1.PNG', title: 'Breaking Foundational Powers (2)' },
+        { src: 'breaking 2.PNG', title: 'Breaking Foundational Powers (3)' },
+        { src: 'holy m.PNG', title: 'Holy Madness (1)' },
+        { src: 'holy m 1.PNG', title: 'Holy Madness (2)' },
+        { src: 'visua.PNG', title: 'Visualization & Forensic Prophecies (1)' },
+        { src: 'visua 1.PNG', title: 'Visualization & Forensic Prophecies (2)' },
+        { src: 'pulling.PNG', title: 'Pulling Crowds (1)' },
+        { src: 'pulling 1.PNG', title: 'Pulling Crowds (2)' },
+        { src: 'pulling 2.PNG', title: 'Pulling Crowds (3)' },
+        { src: 'summon.PNG', title: 'Angelic Operations (1)' },
+        { src: 'summon 1.PNG', title: 'Angelic Operations (2)' },
+        { src: 'summon 2.PNG', title: 'Angelic Operations (3)' },
+        { src: 'tongue.PNG', title: 'Tongues & Interpretations (1)' },
+        { src: 'tongues.PNG', title: 'Tongues & Interpretations (2)' },
+        { src: 'tongues 1.PNG', title: 'Tongues & Interpretations (3)' },
+        { src: 'creating.PNG', title: 'Creating Prophetic Atmosphere (1)' },
+        { src: 'creating 1.PNG', title: 'Creating Prophetic Atmosphere (2)' },
+        { src: 'how to.PNG', title: 'Prophetic Training Series (1)' },
+        { src: 'how to 1.PNG', title: 'Prophetic Training Series (2)' },
+        { src: 'how to 2.PNG', title: 'Prophetic Training Series (3)' },
+        { src: 'how to 3.PNG', title: 'Prophetic Training Series (4)' },
+        { src: 'phd.PNG', title: 'PhD in Prophetic (1)' },
+        { src: 'phd 1.PNG', title: 'PhD in Prophetic (2)' },
+        { src: 'telephatic.PNG', title: 'Telepathic Operations (1)' },
+        { src: 'telephatic 1.PNG', title: 'Telepathic Operations (2)' },
+        { src: 'telephatic 2.PNG', title: 'Telepathic Operations (3)' }
+    ];
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        const lightbox = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        const counter = document.getElementById('lightbox-counter');
+        img.src = galleryImages[currentIndex].src;
+        img.alt = galleryImages[currentIndex].title;
+        counter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    function needHelp() {
-      let msg = encodeURIComponent("I am experiencing difficulty paying for the ebooks and need assistance.");
-      window.location.href = "https://wa.me/2348139230672?text=" + msg;
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
     }
 
-    // Scroll reveal
+    function navigateLightbox(direction) {
+        currentIndex += direction;
+        if (currentIndex >= galleryImages.length) currentIndex = 0;
+        if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+        const img = document.getElementById('lightbox-img');
+        const counter = document.getElementById('lightbox-counter');
+        img.src = galleryImages[currentIndex].src;
+        img.alt = galleryImages[currentIndex].title;
+        counter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    // FAQ Toggle
+    function toggleFaq(item) {
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+    }
+
+    // Countdown Timer
+    function updateCountdown() {
+        const endDate = new Date('2026-09-02T23:59:59').getTime();
+        const now = new Date().getTime();
+        const distance = endDate - now;
+
+        if (distance > 0) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Scroll Reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     entry.target.classList.add('visible');
@@ -1253,9 +1729,9 @@
     reveals.forEach(el => observer.observe(el));
 
     // Stagger children in grids
-    document.querySelectorAll('.books-grid, .pain-grid, .for-grid').forEach(grid => {
+    document.querySelectorAll('.books-grid, .pain-grid, .for-grid, .gallery-grid, .testimonials-grid').forEach(grid => {
         grid.querySelectorAll('.reveal').forEach((card, i) => {
-            card.style.transitionDelay = `${i * 80}ms`;
+            card.style.transitionDelay = `${i * 60}ms`;
         });
     });
 
@@ -1268,6 +1744,16 @@
             stickyBar.classList.remove('visible');
         }
     });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
 </script>
+
 </body>
 </html>
